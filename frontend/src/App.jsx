@@ -30,16 +30,15 @@ export default function App() {
       <AuthProvider>
         <Routes>
           {/* Public routes */}
-          <Route path="/login"  element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/login" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/signup" element={<Navigate to="/dashboard" replace />} />
 
-          {/* Protected routes — require login */}
+          {/* Dashboard is the default landing page */}
           <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <AuthenticatedLayout>
-                <Dashboard />
-              </AuthenticatedLayout>
-            </ProtectedRoute>
+            <AuthenticatedLayout>
+              <Dashboard />
+            </AuthenticatedLayout>
           } />
 
           <Route path="/detect" element={
